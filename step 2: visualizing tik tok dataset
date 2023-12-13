@@ -1,0 +1,81 @@
+#import packages
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#create tik tok dataframe
+tiktok_df=pd.read_csv("tiktok_dataset.csv")
+
+#examining structure of dataframe
+tiktok_df.head(10)
+tiktok_df.size
+tiktok_df.shape
+tiktok_df.info()
+tiktok_df.describe()
+
+#box plot visualization for ‘video_duration_sec’ column
+box_vid_dur=sns.boxplot(data=tiktok_df,x='video_duration_sec')
+plt.title('Box plot of video duration')
+
+#histogram of ‘video_duration_sec’ column
+hist_vid_dur=sns.histplot(data=tiktok_df,x='video_duration_sec')
+plt.title('Histogram of video duration per second')
+
+#box plot of ‘video_view_count’ column
+box_vid_view=sns.boxplot(data=tiktok_df,x='video_view_count')
+plt.title('Box plot of video view count')
+
+#histogram of ‘video_view_count’ column
+hist_vid_view=sns.histplot(data=tiktok_df,x='video_view_count')
+plt.title('Histogram of number of video views')
+
+#box plot of ‘video_like_count’ column
+box_vid_like=sns.boxplot(data=tiktok_df, x='video_like_count')
+plt.title('Box plot of video like count')
+
+#histogram of ‘video_like_count’ column
+hist_vid_like=sns.histplot(data=tiktok_df,x='video_like_count')
+plt.title('Histogram of video like count')
+
+#box plot of ‘video_comment_count’ column
+box_vid_comm=sns.boxplot(data=tiktok_df,x='video_comment_count')
+plt.title('Box plot of count video comments')
+
+#histogram of ‘video_comment_count’ column
+hist_vid_comm=sns.histplot(data=tiktok_df,x='video_comment_count')
+plt.title('Histogram of video comment counts')
+
+#box plot of ‘video_share_count’ column
+box_vid_shr=sns.boxplot(data=tiktok_df, x = 'video_share_count')
+plt.title('Box plot of video shares')
+
+#histogram of ‘video_share_count’ column
+hist_vid_shr=sns.histplot(data=tiktok_df, x='video_share_count')
+plt.title('Histogram of video shares')
+
+#box plot of ‘video_download_count’ column
+box_vid_dl=sns.boxplot(data=tiktok_df, x= 'video_download_count')
+plt.title('Box plot of video downloads')
+
+#histogram of ‘video_download_count’ column
+hist_vid_dl=sns.histplot(data=tiktok_df,x='video_download_count')
+plt.title('Histogram of video downloads')
+
+#histogram of ‘author_ban_status’ column
+hist_ban_status=sns.histplot(data=tiktok_df,x='author_ban_status')
+plt.title('Histogram of author ban status')
+
+#bar plot for ‘author_ban_status’ column
+bar_ban_status=sns.barplot(data=tiktok_df, x='author_ban_status',y='video_view_count',hue='author_ban_status')
+plt.title("Bar plot for video views by author ban status")
+
+#scatterplot of ‘video_view_count’ versus ‘video_like_count’ according to ‘claim_status’
+scat_view_like=sns.scatterplot(data= tiktok_df,x='video_view_count',y='video_like_count',hue='claim_status',style='claim_status')
+plt.title('Scatterplot of video views and likes by claim status')
+
+#scatterplot of ‘video_view_count’ versus ‘video_like_count’ columns for opinions only
+scat_opinions=sns.scatterplot(data=tiktok_df,x='video_view_count',y='video_like_count',hue=tiktok_df['claim_status']=='opinions')
+plt.title('Scatterplot of video views and likes for opinions')
+
+
