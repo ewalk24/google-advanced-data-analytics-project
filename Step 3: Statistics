@@ -1,0 +1,33 @@
+#importing packages
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+
+#loading data into dataframe
+Ttk=pd.read_csv(“tiktok_dataset.csv”)
+
+#display first few rows
+Ttk.head(10)
+
+# descriptive statistics about tik tok dataframe
+Ttk.describe()
+
+#check for missing values
+Ttk.isnull().sum()
+
+#drop rows with missing values 
+Ttk=ttk.dropna(axis=0)
+
+#checking if missing values have been dropped and displaying
+Ttk.isnull().sum()
+Ttk.head(10)
+
+#conduct two sample t-test to compare means
+##saving verification results to variables
+n_verified=ttk[ttk['verified_status']=='not_verified']['video_view_count']
+verified=ttk[ttk['verified_status']=='verified']['video_view_count']
+#ttest
+stats.ttest_ind(a=n_verified,b=verified,equal_var=False)
